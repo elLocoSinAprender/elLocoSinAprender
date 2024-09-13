@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BAYRON INFO</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        body {
+            /* Reemplazamos la imagen de fondo con el GIF */
+            background-image: url('https://media.giphy.com/media/1zRfp0Jwsag4yPekP4/giphy.gif?cid=790b7611jjjsnvadevkeoxdgzxtlg8s6zl1prvptwqub1ptm&ep=v1_gifs_search&rid=giphy.gif&ct=g');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .container {
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.7); /* Mantener el cuadro negro semitransparente */
+            padding: 40px;
+            border-radius: 15px;
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 50px;
+            text-shadow: 0 0 10px rgba(255,255,255,0.5);
+        }
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .option {
+            padding: 15px 30px;
+            font-size: 1.2em;
+            background: rgba(255,255,255,0.1);
+            border: none;
+            border-radius: 5px;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        .option:hover {
+            background: rgba(255,255,255,0.2);
+            transform: scale(1.05);
+        }
+
+        /* Toggle Switch Styles */
+        .toggle-cont {
+            width: 100px;
+            height: 50px;
+            border-radius: 9999px;
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+        }
+
+        .toggle-cont .toggle-input {
+            display: none;
+        }
+
+        .toggle-cont .toggle-label {
+            cursor: pointer;
+            position: relative;
+            display: inline-block;
+            padding: 6px;
+            width: 100%;
+            height: 100%;
+            background: #272727;
+            border-radius: 9999px;
+            box-sizing: content-box;
+            box-shadow: 0px 0px 16px -8px #fefefe;
+        }
+
+        .toggle-cont .toggle-label .cont-label-play {
+            position: relative;
+            width: 50px;
+            aspect-ratio: 1 / 1;
+            background: #5e5e5e;
+            border-radius: 9999px;
+            transition: all 0.5s cubic-bezier(1, 0, 0, 1);
+        }
+
+        .toggle-cont .toggle-input:checked + .toggle-label .cont-label-play {
+            background: #f43f5e;
+            transform: translateX(50px);
+        }
+
+        .toggle-cont .toggle-label .label-play {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: inline-block;
+            width: 24px;
+            aspect-ratio: 1 / 1;
+            background: #fefefe;
+            border-radius: 4px;
+            clip-path: polygon(25% 0, 75% 50%, 25% 100%, 25% 51%);
+            transition: all 0.5s cubic-bezier(1, 0, 0, 1);
+        }
+
+        .toggle-cont .toggle-input:checked + .toggle-label .label-play {
+            width: 20px;
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>BAYRON STORAGE</h1>
+        <div class="options">
+            <a href="https://www.youtube.com/@Imbxyron" target="_blank" class="option" onclick="playButtonSound()">YouTube</a>
+            <a href="https://discord.gg/PGzYPzPz" target="_blank" class="option" onclick="playButtonSound()">Discord</a>
+        </div>
+    </div>
+
+    <!-- Toggle Music Button -->
+    <div class="toggle-cont">
+        <input type="checkbox" id="toggle" class="toggle-input" onchange="toggleBackgroundMusic()">
+        <label for="toggle" class="toggle-label">
+            <div class="cont-label-play">
+                <div class="label-play"></div>
+            </div>
+        </label>
+    </div>
+
+    <audio id="background-music" loop>
+        <!-- Debes subir tu archivo de música a un servidor o usar una URL pública -->
+        <source src="https://drive.google.com/file/d/1cK9e9GweySYbWluU6_FnIPLUKBl9X0rq/view?usp=drive_link" type="audio/mpeg">
+    </audio>
+    <audio id="button-sound">
+        <!-- Reemplaza esto con la URL correcta del sonido del botón -->
+        <source src="https://example.com/path-to-your-button-sound.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        var backgroundMusic = document.getElementById("background-music");
+        var buttonSound = document.getElementById("button-sound");
+
+        function toggleBackgroundMusic() {
+            var toggle = document.getElementById("toggle");
+            if (toggle.checked) {
+                backgroundMusic.play();
+            } else {
+                backgroundMusic.pause();
+            }
+        }
+
+        function playButtonSound() {
+            buttonSound.currentTime = 0;
+            buttonSound.play();
+        }
+    </script>
+</body>
+</html>
